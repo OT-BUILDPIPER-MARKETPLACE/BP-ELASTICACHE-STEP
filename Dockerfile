@@ -10,6 +10,6 @@ ADD elasticache.tf /opt/buildpiper/
 ADD variable.tf /opt/buildpiper/
 
 ENV ACTIVITY_SUB_TASK_CODE TF_RDS_EXECUTE
-ENV INSTRUCTION apply
+ENV INSTRUCTION "apply -auto-approve"
 
 ENTRYPOINT [ "./build.sh" ]
