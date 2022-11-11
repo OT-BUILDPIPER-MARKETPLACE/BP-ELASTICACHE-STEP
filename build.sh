@@ -13,4 +13,4 @@ logInfoMessage "Running below tf command"
 logInfoMessage "terraform $INSTRUCTION"
 
 terraform init
-terraform "$INSTRUCTION" -var-file="terraform.tfvars"
+terraform "$INSTRUCTION" -auto-approve -var-file="terraform.tfvars"
