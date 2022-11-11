@@ -7,9 +7,10 @@ sleep  "$SLEEP_DURATION"
 
 cd  "$WORKSPACE"/"${CODEBASE_DIR}"
 cp /opt/buildpiper/elasticache.tf .
+cp /opt/buildpiper/variable.tf .
 
 logInfoMessage "Running below tf command"
 logInfoMessage "terraform $INSTRUCTION"
 
 terraform init
-terraform "$INSTRUCTION"
+terraform "$INSTRUCTION" -var-file="terraform.tfvars"
