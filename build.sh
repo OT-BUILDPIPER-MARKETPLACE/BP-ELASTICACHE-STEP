@@ -13,4 +13,22 @@ logInfoMessage "Running below tf command"
 logInfoMessage "terraform $INSTRUCTION"
 
 terraform init
-terraform "$INSTRUCTION" -var-file="terraform.tfvars"
+case "$INSTRUCTION" in
+
+  plan)
+    terraform plan -var-file="terraform.tfvars"
+    ;;
+
+  apply)
+    terraform apply -auto-approve -var-file="terraform.tfvars"
+    ;;
+
+  destroy)
+    terraform destroy -auto-approve -var-file="terraform.tfvars"
+    ;;
+
+  *)
+    logInfoMessage "Not a valid option"
+    ;;
+esac
+
