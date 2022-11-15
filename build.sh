@@ -2,10 +2,8 @@
 source /opt/buildpiper/shell-functions/functions.sh
 source /opt/buildpiper/shell-functions/log-functions.sh
 
-logInfoMessage "I'll create/update RDS whose properties are available at [$WORKSPACE] and have mounted at [$CODEBASE_DIR]"
+logInfoMessage "I'll create/update [$MODULE_NAME] whose properties are available at [$WORKSPACE] and have mounted at [$CODEBASE_DIR]"
 sleep  "$SLEEP_DURATION"
-loginfomessage "$MODULE_NAME"
-
 
 cd  "$WORKSPACE"/"${CODEBASE_DIR}"
 cp /opt/buildpiper/$MODULE_NAME/elasticache.tf .
