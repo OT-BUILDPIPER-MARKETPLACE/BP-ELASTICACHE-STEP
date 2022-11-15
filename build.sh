@@ -15,7 +15,7 @@ logInfoMessage "Running below tf command"
 logInfoMessage "terraform $INSTRUCTION"
 
 terraform init
-if [[ $MODULE_NAME -eq eks ]]; then
+if [ $MODULE_NAME -eq ELASTICACHE ]; then
 case "$INSTRUCTION" in
 
   plan)
