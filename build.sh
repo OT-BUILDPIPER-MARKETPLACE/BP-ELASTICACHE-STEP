@@ -4,15 +4,18 @@ source /opt/buildpiper/shell-functions/log-functions.sh
 
 logInfoMessage "I'll create/update RDS whose properties are available at [$WORKSPACE] and have mounted at [$CODEBASE_DIR]"
 sleep  "$SLEEP_DURATION"
+loginfomessage "$MODULE_NAME"
+
 
 cd  "$WORKSPACE"/"${CODEBASE_DIR}"
-cp /opt/buildpiper/elasticache.tf .
-cp /opt/buildpiper/variable.tf .
+cp /opt/buildpiper/$MODULE_NAME/elasticache.tf .
+cp /opt/buildpiper/$MODULE_NAME/variable.tf .
 
 logInfoMessage "Running below tf command"
 logInfoMessage "terraform $INSTRUCTION"
 
 terraform init
+if [[ $MODULE_NAME -eq eks ]]; then
 case "$INSTRUCTION" in
 
   plan)
@@ -31,4 +34,5 @@ case "$INSTRUCTION" in
     logInfoMessage "Not a valid option"
     ;;
 esac
-
+else
+   echo "Not a valid option"
