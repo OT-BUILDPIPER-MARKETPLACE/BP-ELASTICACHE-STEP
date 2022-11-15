@@ -34,5 +34,4 @@ case "$INSTRUCTION" in
     logInfoMessage "Not a valid option"
     ;;
 esac
-else
-   echo "Not a valid option"
+fi
