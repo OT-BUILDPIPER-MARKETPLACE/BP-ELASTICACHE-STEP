@@ -3,10 +3,10 @@ module "elasticache" {
   version                       = "0.0.1"
   name                          = var.name
   notification_topic_arn        = var.notification_topic_arn
-  security_group_ids            = var.security_group_ids
+  security_group_ids            = [data.terraform_remote_state.network.outputs.web_sg_id]
   snapshot_arns                 = var.snapshot_arns
   snapshot_name                 = var.snapshot_name
-  subnet_ids                    = var.subnet_ids
+  subnet_ids                    = data.terraform_remote_state.network.outputs.public_subnet_ids
   apply_immediately             = var.apply_immediately
   at_rest_encryption_enabled    = var.at_rest_encryption_enabled
   auth_token                    = var.auth_token
