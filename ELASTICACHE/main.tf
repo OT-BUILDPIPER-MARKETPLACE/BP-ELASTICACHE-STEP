@@ -1,5 +1,6 @@
 locals {
    security_group_ids = "${var.security_group_ids}"
+   subnet_ids = "${var.subnet_ids}"
 }
 
 module "elasticache" {
@@ -10,7 +11,7 @@ module "elasticache" {
   security_group_ids            = local.security_group_ids
   snapshot_arns                 = var.snapshot_arns
   snapshot_name                 = var.snapshot_name
-  subnet_ids                    = var.subnet_ids
+  subnet_ids                    = local.subnet_ids
   apply_immediately             = var.apply_immediately
   at_rest_encryption_enabled    = var.at_rest_encryption_enabled
   auth_token                    = var.auth_token
