@@ -1,3 +1,8 @@
+variable "region" {
+  type        = string
+  description = "Region where resource will be created."
+}
+
 variable "name" {
   type        = string
   description = "Name of the cluster"
