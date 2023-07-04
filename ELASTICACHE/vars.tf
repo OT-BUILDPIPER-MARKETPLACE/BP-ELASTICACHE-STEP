@@ -12,10 +12,7 @@ variable "notification_topic_arn" {
   default     = null
   description = "An Amazon Resource Name (ARN) of an SNS topic to send ElastiCache notifications to. Example: arn:aws:sns:us-east-1:012345678999:my_sns_topic"
 }
-variable "security_group_ids" {
-  type        = list(string)
-  description = "One or more Amazon VPC security groups associated with this replication group. Use this parameter only when you are creating a replication group in an Amazon Virtual Private Cloud"
-}
+
 variable "snapshot_arns" {
   type        = list(string)
   default     = null
@@ -181,4 +178,31 @@ variable "transit_encryption_enabled" {
   type        = bool
   default     = false
   description = "Whether to enable encryption in transit."
+}
+variable "sg_name" {
+  description = "Name of the security group"
+  type        = string
+}
+variable "enable_whitelist_ip" {
+  description = "Enable IP whitelisting"
+  type        = bool
+}
+
+variable "enable_source_security_group_entry" {
+  description = "Enable source security group entry"
+  type        = bool
+}
+
+variable "create_outbound_rule_with_src_sg_id" {
+  description = "Create outbound rule with source security group ID"
+  type        = bool
+}
+variable "vpc_cidr_range" {
+  description = "CIDR range of the VPC"
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "VPC ID"
+  type        = string
 }

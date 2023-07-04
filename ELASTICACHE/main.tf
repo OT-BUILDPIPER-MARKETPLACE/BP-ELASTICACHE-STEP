@@ -1,14 +1,16 @@
 locals {
-   security_group_ids = "${var.security_group_ids}"
    subnet_ids = "${var.subnet_ids}"
+   vpc_cidr_range = var.vpc_cidr_range
+   vpc_id=var.vpc_id
 }
+
 
 module "elasticache" {
   source                        = "OT-CLOUD-KIT/elasticache/aws"
   version                       = "0.0.1"
   name                          = var.name
   notification_topic_arn        = var.notification_topic_arn
-  security_group_ids            = local.security_group_ids
+  security_group_ids            = [module.elasticache_security_group.sg_id]
   snapshot_arns                 = var.snapshot_arns
   snapshot_name                 = var.snapshot_name
   subnet_ids                    = local.subnet_ids
@@ -38,4 +40,30 @@ module "elasticache" {
   subnet_group_name             = var.subnet_group_name
   tags                          = var.tags
   transit_encryption_enabled    = var.transit_encryption_enabled
+}
+module "elasticache_security_group" {
+  source                              = "OT-CLOUD-KIT/security-groups/aws"
+  version                             = "1.0.0"
+  name_sg                             = var.sg_name
+  tags                                = var.tags
+  enable_whitelist_ip                 = var.enable_whitelist_ip
+  enable_source_security_group_entry  = var.enable_source_security_group_entry
+  create_outbound_rule_with_src_sg_id = var.create_outbound_rule_with_src_sg_id
+
+  vpc_id = local.vpc_id
+  ingress_rule = {
+    rules = {
+      rule_list = [
+        {
+          description  = "opening port 6379 for vpc  cidr"
+          from_port    = 6379
+          to_port      = 6379
+          protocol     = "tcp"
+          cidr         = [local.vpc_cidr_range]
+          source_SG_ID = []
+        },
+    
+      ]
+    }
+  }
 }
