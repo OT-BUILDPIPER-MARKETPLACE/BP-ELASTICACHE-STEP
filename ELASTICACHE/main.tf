@@ -1,7 +1,7 @@
 locals {
    subnet_ids = "${var.subnet_ids}"
    vpc_cidr_range = var.vpc_cidr_range
-   vpc_id=var.vpc_id
+   vpc_id = var.vpc_id
 }
 
 
