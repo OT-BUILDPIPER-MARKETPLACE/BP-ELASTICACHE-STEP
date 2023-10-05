@@ -21,7 +21,7 @@ module "elasticache" {
   subnet_ids                    = local.subnet_ids
   security_group_ids            = [module.elasticache_security_group.sg_id]
   transit_encryption_enabled    = var.transit_encryption_enabled
-  parameter =                   = var.parameter
+  parameter                     = var.parameter
 }
 module "elasticache_security_group" {
   source                              = "OT-CLOUD-KIT/security-groups/aws"
