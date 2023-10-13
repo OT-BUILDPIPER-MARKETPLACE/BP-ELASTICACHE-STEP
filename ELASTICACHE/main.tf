@@ -5,8 +5,8 @@ locals {
 }
 
 module "elasticache" {
-  source                        = "OT-CLOUD-KIT/elasticache/aws"
-  version                       = "0.0.1"
+  source                        = "../../terraform-aws-elasticache/"
+ # version                       = "0.0.1"
   name                          = var.name
   number_cache_clusters         = var.number_cache_clusters
   num_node_groups               = var.num_node_groups
@@ -22,6 +22,13 @@ module "elasticache" {
   security_group_ids            = [module.elasticache_security_group.sg_id]
   transit_encryption_enabled    = var.transit_encryption_enabled
   parameter                     = var.parameter
+
+  alarm_enabled = var.alarm_enabled
+  evaluation_period = var.evaluation_period
+  statistic_period = var.statistic_period
+  alarm_cpu_threshold = var.alarm_cpu_threshold
+  alarm_memory_threshold = var.alarm_memory_threshold
+  alarm_Curuuconnections_threshold = var.alarm_Curuuconnections_threshold
 }
 module "elasticache_security_group" {
   source                              = "OT-CLOUD-KIT/security-groups/aws"
@@ -49,3 +56,4 @@ module "elasticache_security_group" {
     }
   }
 }
+
