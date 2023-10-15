@@ -5,8 +5,8 @@ locals {
 }
 
 module "elasticache" {
-  source                        = "../../terraform-aws-elasticache/"
- # version                       = "0.0.1"
+  source                        = "OT-CLOUD-KIT/elasticache/aws"
+  version                       = "0.0.2"
   name                          = var.name
   number_cache_clusters         = var.number_cache_clusters
   num_node_groups               = var.num_node_groups
