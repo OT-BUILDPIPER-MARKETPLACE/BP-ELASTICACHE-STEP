@@ -21,7 +21,7 @@ module "elasticache" {
   security_group_ids            = [module.elasticache_security_group.sg_id]
   transit_encryption_enabled    = var.transit_encryption_enabled
   parameter                     = var.parameter
-
+  env = var.env
   alarm_enabled = var.alarm_enabled
   evaluation_period = var.evaluation_period
   statistic_period = var.statistic_period
