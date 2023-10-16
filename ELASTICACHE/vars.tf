@@ -250,3 +250,7 @@ variable "alarm_Curuuconnections_threshold" {
   # 10MB
   default = "40000"
 }
+
+variable "env" {
+description =  "deployment env"
+}
