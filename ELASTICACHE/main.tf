@@ -5,8 +5,7 @@ locals {
 }
 
 module "elasticache" {
-  source                        = "OT-CLOUD-KIT/elasticache/aws"
-  version                       = "0.0.2"
+  source                        = "git::https://github.com/OT-CLOUD-KIT/terraform-aws-elasticache.git?ref=elasticache-cloudwatch"
   name                          = var.name
   number_cache_clusters         = var.number_cache_clusters
   num_node_groups               = var.num_node_groups
